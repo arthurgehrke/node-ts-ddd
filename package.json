@@ -11,6 +11,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@types/express": "^4.17.7",
+		"git-commit-msg-linter": "^2.4.4",
 		"ts-node-dev": "^1.0.0-pre.51",
 		"typescript": "^3.9.6"
 	},
