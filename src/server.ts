@@ -1,7 +1,10 @@
 import express from 'express';
 
 import routes from './routes';
+import './database';
 
 const app = express();
 
-app.listen(3000, () => 'Server running on 3000');
+app.listen(3000, () => {
+	console.log('Server running on 3000');
+});
