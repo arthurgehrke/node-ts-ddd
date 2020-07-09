@@ -1,0 +1,11 @@
+{
+  "name": "node-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/arthurgehrke/node-ts.git",
+  "author": "arthurgehrke <arthurgehrke07@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.6"
+  }
+}
