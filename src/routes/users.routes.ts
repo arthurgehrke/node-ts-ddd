@@ -6,9 +6,9 @@ import CreateUserService from '../services/CreateUserService';
 
 const usersRouter = Router();
 
-usersRouter.get('/', (request, response) => {
+usersRouter.get('/', async (request, response) => {
 	const usersRepository = getCustomRepository(UsersRepository);
-	const users = usersRepository.find();
+	const users = await usersRepository.find();
 
 	return response.status(200).json(users);
 });

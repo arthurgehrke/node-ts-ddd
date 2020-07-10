@@ -12,7 +12,7 @@ class CreateUserService {
 	public async execute({ email, password }: Request): Promise<User> {
 		const usersRepository = getCustomRepository(UsersRepository);
 
-		const findUserWithSameEmail = usersRepository.findByEmail(email);
+		const findUserWithSameEmail = await usersRepository.findByEmail(email);
 
 		if (findUserWithSameEmail) throw Error('This email is already taken');
 
