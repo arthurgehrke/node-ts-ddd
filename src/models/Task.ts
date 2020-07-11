@@ -5,7 +5,11 @@ import {
 	PrimaryGeneratedColumn,
 	CreateDateColumn,
 	UpdateDateColumn,
+	ManyToOne,
+	JoinColumn,
 } from 'typeorm';
+
+import User from './User';
 
 @Entity('tasks')
 class Task {
@@ -14,6 +18,13 @@ class Task {
 
 	@Column()
 	name: string;
+
+	@Column()
+	user_id: string;
+
+	@ManyToOne(() => User)
+	@JoinColumn({ name: 'user_id' })
+	user: User;
 
 	@Column('timestamp with time zone')
 	date: Date;
