@@ -7,16 +7,16 @@ import {
 	UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-class User {
+@Entity('tasks')
+class Task {
 	@PrimaryGeneratedColumn('increment')
 	id: number;
 
 	@Column()
-	email: string;
+	name: string;
 
-	@Column()
-	password: string;
+	@Column('timestamp with time zone')
+	date: Date;
 
 	@CreateDateColumn()
 	created_at: Date;
@@ -25,4 +25,4 @@ class User {
 	updated_at: Date;
 }
 
-export default User;
+export default Task;
