@@ -17,6 +17,7 @@ export default class CreateTasks1594468289081 implements MigrationInterface {
 						name: 'name',
 						type: 'varchar',
 						isNullable: false,
+						isUnique: true,
 					},
 					{
 						name: 'date',
