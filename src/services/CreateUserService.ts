@@ -1,6 +1,8 @@
 import { getCustomRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
+import AppError from '../errors/AppError';
+
 import User from '../models/User';
 import UsersRepository from '../repositories/UsersRepository';
 
@@ -15,7 +17,8 @@ class CreateUserService {
 
 		const findUserWithSameEmail = await usersRepository.findByEmail(email);
 
-		if (findUserWithSameEmail) throw Error('This email is already taken');
+		if (findUserWithSameEmail)
+			throw new AppError('This email is already taken');
 
 		const hashedPassword = await hash(password, 8);
 

@@ -2,6 +2,8 @@
 import { getRepository } from 'typeorm';
 import Task from '../models/Task';
 
+import AppError from '../errors/AppError';
+
 interface Request {
 	name: string;
 	date: Date;
@@ -17,7 +19,7 @@ class CreateTaskService {
 		});
 
 		if (checkTaskExists) {
-			throw new Error('This name is already used');
+			throw new AppError('This name is already used');
 		}
 
 		const task = tasksRepository.create({ name, date, user_id });
