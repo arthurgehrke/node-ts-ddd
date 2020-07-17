@@ -4,6 +4,8 @@ import { getCustomRepository } from 'typeorm';
 import UsersRepository from '../repositories/UsersRepository';
 import CreateUserService from '../services/CreateUserService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const usersRouter = Router();
 
 usersRouter.get('/', async (request, response) => {
@@ -28,5 +30,11 @@ usersRouter.post('/', async (request, response) => {
 		return response.status(400).json({ error: err.message });
 	}
 });
+
+usersRouter.patch(
+	'/avatar',
+	ensureAuthenticated,
+	async (request, response) => {},
+);
 
 export default usersRouter;
