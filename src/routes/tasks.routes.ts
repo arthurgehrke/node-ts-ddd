@@ -3,7 +3,11 @@ import { Router } from 'express';
 
 import CreateTaskService from '../services/CreateTaskService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const tasksRouter = Router();
+
+tasksRouter.use(ensureAuthenticated);
 
 tasksRouter.post('/', async (request, response) => {
 	try {
