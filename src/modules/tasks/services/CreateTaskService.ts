@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import { getRepository } from 'typeorm';
-import Task from '../models/Task';
+import Task from '@modules/tasks/infra/typeorm/entities/Task';
 
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
 
 interface Request {
 	name: string;

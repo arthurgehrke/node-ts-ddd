@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 import { Router } from 'express';
 
-import CreateTaskService from '../services/CreateTaskService';
+import CreateTaskService from '@modules/tasks/services/CreateTaskService';
 
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const tasksRouter = Router();
 
