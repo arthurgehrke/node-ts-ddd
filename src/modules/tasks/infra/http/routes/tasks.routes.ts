@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { Router } from 'express';
+import { container } from 'tsyringe';
 
 import CreateTaskService from '@modules/tasks/services/CreateTaskService';
 
@@ -12,7 +13,7 @@ tasksRouter.use(ensureAuthenticated);
 tasksRouter.post('/', async (request, response) => {
 	const { name, date, user_id } = request.body;
 
-	const createTask = new CreateTaskService();
+	const createTask = container.resolve(CreateTaskService);
 
 	const task = await createTask.execute({ name, date, user_id });
 

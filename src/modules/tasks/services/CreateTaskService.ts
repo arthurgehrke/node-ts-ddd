@@ -1,30 +1,31 @@
-/* eslint-disable camelcase */
-import { getRepository } from 'typeorm';
+import ITaskRepository from '@modules/tasks/repositories/ITasksRepository';
 import Task from '@modules/tasks/infra/typeorm/entities/Task';
+
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-interface Request {
+interface IRequest {
 	name: string;
 	date: Date;
 	user_id: string;
 }
 
+@injectable()
 class CreateTaskService {
-	public async execute({ name, date, user_id }: Request): Promise<Task> {
-		const tasksRepository = getRepository(Task);
+	constructor(
+		@inject('TaskRepository')
+		private tasksRepository: ITaskRepository,
+	) {}
 
-		const checkTaskExists = await tasksRepository.findOne({
-			where: { name },
-		});
+	public async execute({ name, date, user_id }: IRequest): Promise<Task> {
+		const checkTaskExists = await this.tasksRepository.findByName(name);
 
 		if (checkTaskExists) {
 			throw new AppError('This name is already used');
 		}
 
-		const task = tasksRepository.create({ name, date, user_id });
-
-		await tasksRepository.save(task);
+		const task = this.tasksRepository.execute({ name, date, user_id });
 
 		return task;
 	}
