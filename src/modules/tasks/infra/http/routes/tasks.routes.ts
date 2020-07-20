@@ -1,23 +1,13 @@
-/* eslint-disable camelcase */
 import { Router } from 'express';
-import { container } from 'tsyringe';
-
-import CreateTaskService from '@modules/tasks/services/CreateTaskService';
 
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import TasksController from '../controllers/TasksController';
 
 const tasksRouter = Router();
+const tasksController = new TasksController();
 
 tasksRouter.use(ensureAuthenticated);
 
-tasksRouter.post('/', async (request, response) => {
-	const { name, date, user_id } = request.body;
-
-	const createTask = container.resolve(CreateTaskService);
-
-	const task = await createTask.execute({ name, date, user_id });
-
-	return response.status(201).json(task);
-});
+tasksRouter.post('/', tasksController.create);
 
 export default tasksRouter;
